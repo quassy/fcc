@@ -1,0 +1,44 @@
+# Config
+.env
+user.env
+
+# R
+.Rhistory
+.Rproj.user/
+
+# Python
+builds/
+cache/
+*.py[cod]
+
+# Environment
+.venv/*
+venv/*
+
+# Cache
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+
+# IDE
+.idea/*
+.vscode/*
+
+## Whitelist PyCharm watchers and saveactions (extension)
+!.idea/watcherTasks.xml
+!.idea/saveactions_settings.xml
+
+# Data
+mongo/
+pgdata/
+data/
+
+# Log & profiling data
+logs/
+*.log
+*.dat
+*.dcm
+*.jpeg
+*.jpg
+*.png
+*.gif

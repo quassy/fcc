@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SaveActionSettings">
+    <option name="actions">
+      <set>
+        <option value="activate" />
+        <option value="reformat" />
+      </set>
+    </option>
+    <option name="inclusions">
+      <set>
+        <option value=".*\.env" />
+        <option value=".*\.md" />
+        <option value=".*\.sql" />
+        <option value=".*\.toml" />
+        <option value=".*\.yml" />
+      </set>
+    </option>
+  </component>
+</project>
