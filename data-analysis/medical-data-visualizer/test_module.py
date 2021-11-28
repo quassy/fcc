@@ -164,7 +164,7 @@ class HeatMapTestCase(unittest.TestCase):
             "-0.0",
             "0.1",
         ]
-        self.assertEqual(actual, expected, "Expected different values in heat map.")
+        self.assertListEqual(actual, expected, "Expected different values in heat map.")
 
 
 if __name__ == "__main__":

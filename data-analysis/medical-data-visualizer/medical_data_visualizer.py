@@ -28,21 +28,23 @@ def draw_cat_plot():
         id_vars=["id", "cardio"],
         value_vars=["cholesterol", "gluc", "smoke", "alco", "active", "overweight"],
     )
+    df_cat["value"] = df_cat["value"].astype(int, copy=False)
 
     # Group and reformat the data to split it by 'cardio'. Show the counts of each feature. You
     # will have to rename one of the columns for the catplot to work correctly.
     df_cat = df_cat.groupby(by=["cardio", "variable", "value"], as_index=False).count()
+    df_cat.rename(columns={"id": "total"}, inplace=True)
 
     # Draw the catplot with 'sns.catplot()'
-    fig, ax = plt.subplots()
-    sns.catplot(
+    grid = sns.catplot(
         x="variable",
-        y="id",
+        y="total",
         hue="value",
         kind="bar",
         col="cardio",
         data=df_cat,
     )
+    fig = grid.fig
 
     # Do not modify the next two lines
     fig.savefig("catplot.png")
@@ -52,13 +54,14 @@ def draw_cat_plot():
 # Draw Heat Map
 def draw_heat_map():
     # Clean the data
-    df_heat = df.loc[df["ap_lo"] <= df["ap_hi"]]
-    df_heat = df_heat.loc[df_heat["height"].quantile(0.025) <= df_heat["height"]].loc[
-        df_heat["height"] <= df_heat["height"].quantile(0.975)
-    ]
-
-    df_heat = df_heat.loc[df_heat["weight"].quantile(0.025) <= df_heat["weight"]].loc[
-        df_heat["weight"] <= df_heat["weight"].quantile(0.975)
+    # df_heat = df.loc[df["ap_lo"] <= df["ap_hi"]]
+    df_heat = df.copy()
+    df_heat = df.loc[
+        (df["ap_lo"] <= df["ap_hi"])
+        & (df_heat["height"].quantile(0.025) <= df_heat["height"])
+        & (df_heat["height"] <= df_heat["height"].quantile(0.975))
+        & (df_heat["weight"].quantile(0.025) <= df_heat["weight"])
+        & (df_heat["weight"] <= df_heat["weight"].quantile(0.975))
     ]
 
     # Calculate the correlation matrix
