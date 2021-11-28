@@ -54,7 +54,6 @@ def draw_cat_plot():
 # Draw Heat Map
 def draw_heat_map():
     # Clean the data
-    # df_heat = df.loc[df["ap_lo"] <= df["ap_hi"]]
     df_heat = df.copy()
     df_heat = df.loc[
         (df["ap_lo"] <= df["ap_hi"])

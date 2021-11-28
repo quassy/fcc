@@ -15,6 +15,21 @@ df = df.loc[
     (df["value"].quantile(0.025) <= df["value"]) & (df["value"] <= df["value"].quantile(0.975))
 ]
 
+months = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
+}
+
 
 def draw_line_plot():
     # Draw line plot
@@ -43,20 +58,7 @@ def draw_bar_plot():
     df_bar.sort_values(by=["year", "month"], inplace=True)
     df_bar.reset_index(level=0, inplace=True)
     df_bar = df_bar.pivot(columns="month", values="value")
-    months = {
-        1: "January",
-        2: "February",
-        3: "March",
-        4: "April",
-        5: "May",
-        6: "June",
-        7: "July",
-        8: "August",
-        9: "September",
-        10: "October",
-        11: "November",
-        12: "December",
-    }
+
     df_bar.rename(columns=months, inplace=True)
 
     # Draw bar plot
@@ -88,10 +90,19 @@ def draw_box_plot():
     fig.set_size_inches(32.0, 11.2)
     fig.set_dpi(100)
 
-    axs[1] = sns.boxplot(x="year", y="value", data=df_box)
-    axs[0] = sns.boxplot(x="month", y="value", data=df_box)
-
-    plt.show()
+    plot_year = sns.boxplot(x="year", y="value", data=df_box, ax=axs[0])
+    plot_year.set(xlabel="Year", ylabel="Page Views")
+    plot_year.set_title("Year-wise Box Plot (Trend)")
+    # ax[0].legend(title="Months")
+    plot_month = sns.boxplot(
+        x="month",
+        y="value",
+        data=df_box,
+        ax=axs[1],
+        order=[s[:3] for s in months.values()],
+    )
+    plot_month.set(xlabel="Month", ylabel="Page Views")
+    plot_month.set_title("Month-wise Box Plot (Seasonality)")
 
     # Save image and return fig (don't change this part)
     fig.savefig("box_plot.png")
