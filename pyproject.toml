@@ -18,6 +18,7 @@ exclude = ".git, __pycache__, .mypy_cache, .pytest_cache, .venv, .cache"
 docstring-convention = "google"
 mypy-init-return = "true"
 count = "true"
+min_python_version = "3.9.0"
 
 [tool.isort]
 multi_line_output = 3
