@@ -47,9 +47,9 @@ local_partial_types = true
 [tool.poetry]
 name = "fcc"
 version = "0.1.0"
-description = "python boilerplate project with CI and pre commit"
-authors = ["Westphalia DataLab <info@westphalia-datalab.com>"]
-license = "Copyright 2021 Westphalia DataLab"
+description = "projects for freeCodeCamp Python courses"
+authors = ["quassy <quassy@users.noreply.github.com>"]
+license = "Copyright 2021 quassy"
 
 [tool.poetry.dependencies]
 python = "~3.9"
